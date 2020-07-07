@@ -42,7 +42,8 @@ exports.show = async (req, res) => {
 
 exports.new = (req, res) => {
   res.render(`${viewPath}/new`, {
-    pageTitle: 'New Reservation'
+    pageTitle: 'New Reservation',
+    roomType: roomType
   });
 };
 
@@ -68,7 +69,8 @@ exports.edit = async (req, res) => {
     const reservation = await Reservation.findById(req.params.id);
     res.render(`${viewPath}/edit`, {
       pageTitle: reservation.title,
-      formData: reservation
+      formData: reservation,
+      roomType: roomType
     });
   } catch (error) {
     req.flash('danger', `Error of changing the room info: ${error}`);
